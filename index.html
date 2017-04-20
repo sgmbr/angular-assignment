@@ -5,6 +5,7 @@
     <title>PSP2</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-route.js"></script>
 </head>
 <body>
     <div data-ng-app="myApp" data-ng-controller="MainCtrl as mc">
@@ -24,26 +25,19 @@
         <ul>
             <li><a href="#AddedSalesPeople">Added Sales People</a></li>
             <li><a href="#GetAllSalesPeople">getAllSalesPeople</a></li>
+            <li><a href="#MeanAbsoluteDeviation">Mean Absolute Deviation</a></li>
+            <li><a href="#SampleCovariance">Sample Covariance</a></li>
         </ul>
 
-        <ng-view></ng-view>
-
-        <div data-ng-if="mc.company.allMySalesPersons.length" class="content">
-            <h2>Mean absolute deviation of Salary:</h2>
-            <p>{{mc.company.getMeanAbsoluteDeviation()}}</p>
-        </div>
-
-        <div data-ng-if="mc.company.allMySalesPersons.length" class="content">
-            <h2>Sample covariance of salary and commenced year:</h2>
-            <p>{{mc.company.getSampleCovariance()}}</p>
-        </div>
+        <div ng-view></div>
+        
     </div>
 
     <script src="psp2/message.js"></script>
     <script src="psp2/parser.js"></script>
     <script src="psp2/filereader_directive.js"></script>
-    <script src="psp2/maincontroller.js"></script>
-    <script src="psp2/main.js"></script>
+    <script src="psp3/maincontroller.js"></script>
+    <script src="psp3/main.js"></script>
 
     <hr>
 

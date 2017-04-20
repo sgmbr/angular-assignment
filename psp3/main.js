@@ -1,8 +1,9 @@
 /* jshint undef: true, unused: true, esversion: 6, asi: true */
 
 window.angular
-    .module('myApp', [])
-    .config(function($routeProvider) {
+    .module('myApp', ['ngRoute'])
+    .controller('MainCtrl', MainCtrl)
+    .config(['$routeProvider', function($routeProvider) {
         $routeProvider
             .when('/AddedSalesPeople', {
                 controller: 'MainCtrl',
@@ -12,11 +13,21 @@ window.angular
                 controller: 'MainCtrl',
                 templateUrl: 'templates/get-all-sales-people.html'
             })
-            .otherwise({
-                redirectTo: ''
+            .when('/MeanAbsoluteDeviation', {
+                controller: 'MainCtrl',
+                templateUrl: 'templates/mean-absolute-deviation.html'
             })
-    })
-    .controller('MainCtrl', MainCtrl)
+            .when('/SampleCovariance', {
+                controller: 'MainCtrl',
+                templateUrl: 'templates/sample-covariance.html'
+            })
+            .otherwise({
+                redirectTo: '/AddedSalesPeople'
+            })
+    }])
+    .config(['$locationProvider', function($locationProvider) {
+        $locationProvider.hashPrefix('')
+    }])
     .directive('onReadFile', OnReadFile.directiveFactory)
     .factory('message', Message.getReturn)
     .factory('parser', Parser.getReturn)
