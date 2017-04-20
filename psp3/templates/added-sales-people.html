@@ -1,0 +1,19 @@
+<div data-ng-if="mc.company.allMySalesPersons.length" class="content">
+    <p>Following Sales People were added.</p>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Salary</th>
+            <th>YearCommenced</th>
+        </tr>
+        <tr data-ng-repeat="salesPerson in mc.company.allMySalesPersons">
+            <td>{{salesPerson.id}}</td>
+            <td>{{salesPerson.firstName}}</td>
+            <td>{{salesPerson.lastName}}</td>
+            <td>{{salesPerson.salary}}</td>
+            <td>{{salesPerson.yearCommenced}}</td>
+        </tr>
+    </table>
+</div>

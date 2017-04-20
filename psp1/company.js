@@ -46,14 +46,33 @@ class Company {
     }
 
     getMeanAbsoluteDeviation() {
-        let salarySum = this.allMySalesPersons.reduce((acc, val) => acc + val.salary, 0)
+        let salarySum = this.allMySalesPersons.reduce((acc, cur) => acc + cur.salary, 0)
         let salaryMean = salarySum / this.allMySalesPersons.length
-        let molecule = this.allMySalesPersons.reduce((acc, val) => {
-            let distance = Math.abs(val.salary - salaryMean)
+        let molecule = this.allMySalesPersons.reduce((acc, cur) => {
+            let distance = Math.abs(cur.salary - salaryMean)
             return acc + distance
         }, 0)
         let meanAbsoluteDeviation = molecule / this.allMySalesPersons.length
         return meanAbsoluteDeviation
+    }
+
+    getSampleCovariance() {
+        let average = function(array) {
+            return array.reduce((acc, cur) => acc + cur, 0) / array.length
+        }
+
+        let salaries = this.allMySalesPersons.map(aSalesPerson => aSalesPerson.salary)
+        let years = this.allMySalesPersons.map(aSalesPerson => aSalesPerson.yearCommenced)
+
+        let salaryAverage = average(salaries)
+        let yearAverage = average(years)
+
+        let molecule = 0
+        for (let i = 0; i < salaries.length; i++) {
+            molecule += (salaries[i] - salaryAverage) * (years[i] - yearAverage)
+        }
+        let sampleCovariance = molecule / (salaries.length -1)
+        return sampleCovariance
     }
 
     addProduct(newId, newName, newPrice, newQuantityOnHand, newMinimumQuantity) {

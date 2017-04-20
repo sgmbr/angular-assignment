@@ -1,0 +1,13 @@
+<div data-ng-if="mc.salesPersonTable.length" class="content">
+    <h2>getAllSalesPeople</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+        </tr>
+        <tr data-ng-repeat="sp in mc.salesPersonTable | orderBy:'name'">
+            <td>{{sp.id}}</td>
+            <td>{{sp.name}}</td>
+        </tr>
+    </table>
+</div>
