@@ -1,0 +1,20 @@
+body { padding: 5% }
+
+.content {
+  background: #efefef;
+  padding: 20px;
+  margin-top: 25px;
+  line-height: 1.8;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #000;
+}
+
+th, td {
+    padding: 0 1rem;
+}
