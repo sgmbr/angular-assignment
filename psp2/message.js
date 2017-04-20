@@ -15,6 +15,10 @@ class Message {
         return this.info
     }
 
+    deleteMessage() {
+        this.info.list = []
+    }
+
     static getReturn() {
         return new Message()
     }

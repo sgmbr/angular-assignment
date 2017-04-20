@@ -13,14 +13,14 @@
 
         <input type="file" data-on-read-file>
         <br>
-        <div data-ng-if="mc.message.list.length" class="content">
-            <p>Data in the file is:</p>
-            <p data-ng-repeat="msg in mc.message.list">{{ msg }}</p>
+        <div data-ng-if="mc.fileContent.list.length" class="content">
+            <p>File content:</p>
+            <p data-ng-repeat="msg in mc.fileContent.list">{{ msg }}</p>
         </div>
 
         <p data-ng-if="mc.message.list.length">Press Add to add this data.</p>
-        <button data-ng-click="mc.addSalesPeople()">Add Sales People</button>
-        <button data-ng-click="mc.addProducts()">Add Products</button>
+        <a href="#AddedSalesPeople"><button data-ng-click="mc.addSalesPeople()">Add Sales People</button></a>
+        <a href="#AddedProducts"><button data-ng-click="mc.addProducts()">Add Products</button></a>
         <br>
 
         <ul>

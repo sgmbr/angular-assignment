@@ -3,7 +3,8 @@
 class MainCtrl {
     constructor(message, parser) {
         this.title = 'PSP3: Finalization'
-        this.message = message.getMessage()
+        this.message = message
+        this.fileContent = message.getMessage()
         this.parser = parser
         this.company = new Company()
         this.salesPersonTable = [] // [{id:123, name:'Doe, John'}, {id:234, name: 'Doe, Jane'}...]
@@ -16,11 +17,12 @@ class MainCtrl {
     }
 
     addSalesPeople() {
-        let parsed = this.parser.parseSalesPeopleCsv(this.message.list[0])
+        let parsed = this.parser.parseSalesPeopleCsv(this.fileContent.list[0])
         parsed.forEach(newSalesPerson => {
             this.company.addSalesPerson(newSalesPerson.id, newSalesPerson.firstName, newSalesPerson.lastName, newSalesPerson.salary, newSalesPerson.yearCommenced)
         })
         this.setupSalesPersonTable()
+        this.message.deleteMessage()
     }
 
     setupProductsToOrderTable() {
@@ -29,11 +31,12 @@ class MainCtrl {
     }
 
     addProducts() {
-        let parsed = this.parser.parseProductsCsv(this.message.list[0])
+        let parsed = this.parser.parseProductsCsv(this.fileContent.list[0])
         parsed.forEach(newProduct => {
             this.company.addProduct(newProduct.id, newProduct.name, newProduct.price, newProduct.quantityOnHand, newProduct.minimumQuantity)
         })
         this.setupProductsToOrderTable()
+        this.message.deleteMessage()
     }
 }
 
