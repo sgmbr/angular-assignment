@@ -1,0 +1,23 @@
+<div data-ng-if="!mc.company.allMyProducts.length"  class="content">
+    <p>Product is not added yet.</p>
+</div>
+<div data-ng-if="mc.company.allMyProducts.length" class="content">
+    <h2>Added Products</h2>
+    <p>Following Products were added.</p>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>QuantityOnHand</th>
+            <th>MinimumQuantity</th>
+        </tr>
+        <tr data-ng-repeat="product in mc.company.allMyProducts">
+            <td>{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.quantityOnHand}}</td>
+            <td>{{product.minimumQuantity}}</td>
+        </tr>
+    </table>
+</div>

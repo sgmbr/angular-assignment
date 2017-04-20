@@ -7,19 +7,33 @@ class MainCtrl {
         this.parser = parser
         this.company = new Company()
         this.salesPersonTable = [] // [{id:123, name:'Doe, John'}, {id:234, name: 'Doe, Jane'}...]
+        this.productsToOrderTable = [] // [{id:'BO', name:'Bolt'}, {id:'NU', name:'Nut'}...]
     }
 
-    show() {
-        let salesPeopleString = this.company.getAllSalesPeople()
-        this.salesPersonTable = this.parser.parseAllSalesPeople(salesPeopleString)
+    setupSalesPersonTable() {
+        let salesPeopleStr = this.company.getAllSalesPeople()
+        this.salesPersonTable = this.parser.parseSalesPeopleStr(salesPeopleStr)
     }
 
-    add() {
-        let parsed = this.parser.parseCsv(this.message.list[0])
+    addSalesPeople() {
+        let parsed = this.parser.parseSalesPeopleCsv(this.message.list[0])
         parsed.forEach(newSalesPerson => {
             this.company.addSalesPerson(newSalesPerson.id, newSalesPerson.firstName, newSalesPerson.lastName, newSalesPerson.salary, newSalesPerson.yearCommenced)
         })
-        this.show()
+        this.setupSalesPersonTable()
+    }
+
+    setupProductsToOrderTable() {
+        let productsToOrderStr = this.company.getProductsToOrder()
+        this.productsToOrderTable = this.parser.parseProductsToOrderStr(productsToOrderStr)
+    }
+
+    addProducts() {
+        let parsed = this.parser.parseProductsCsv(this.message.list[0])
+        parsed.forEach(newProduct => {
+            this.company.addProduct(newProduct.id, newProduct.name, newProduct.price, newProduct.quantityOnHand, newProduct.minimumQuantity)
+        })
+        this.setupProductsToOrderTable()
     }
 }
 

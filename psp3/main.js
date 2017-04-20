@@ -21,6 +21,14 @@ window.angular
                 controller: 'MainCtrl',
                 templateUrl: 'templates/sample-covariance.html'
             })
+            .when('/AddedProducts', {
+                controller: 'MainCtrl',
+                templateUrl: 'templates/added-products.html'
+            })
+            .when('/ProductsToOrder', {
+                controller: 'MainCtrl',
+                templateUrl: 'templates/products-to-order.html'
+            })
             .otherwise({
                 redirectTo: '/AddedSalesPeople'
             })

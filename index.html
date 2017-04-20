@@ -19,7 +19,8 @@
         </div>
 
         <p data-ng-if="mc.message.list.length">Press Add to add this data.</p>
-        <button data-ng-click="mc.add()">Add</button>
+        <button data-ng-click="mc.addSalesPeople()">Add Sales People</button>
+        <button data-ng-click="mc.addProducts()">Add Products</button>
         <br>
 
         <ul>
@@ -27,10 +28,12 @@
             <li><a href="#GetAllSalesPeople">getAllSalesPeople</a></li>
             <li><a href="#MeanAbsoluteDeviation">Mean Absolute Deviation</a></li>
             <li><a href="#SampleCovariance">Sample Covariance</a></li>
+            <li><a href="#AddedProducts">Added Products</a></li>
+            <li><a href="#ProductsToOrder">Products to Order</a></li>
         </ul>
 
         <div ng-view></div>
-        
+
     </div>
 
     <script src="psp2/message.js"></script>
