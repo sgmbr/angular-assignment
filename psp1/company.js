@@ -32,7 +32,7 @@ class Company {
         let out = []
         this.allMySalesPersons.forEach(aSalesPerson => {
             // out.push({id: aSalesPerson.id, name: `${aSalesPerson.lastName}, ${aSalesPerson.firstName}`})
-            out += `${aSalesPerson}${View.br()}`
+            out += `${aSalesPerson}<br>`
         })
         return out
     }
@@ -85,7 +85,7 @@ class Company {
         let out = ''
         this.allMyProducts.forEach(aProduct => {
             if (aProduct.moreNeeded()) {
-                out += `${aProduct}${View.br()}`
+                out += `${aProduct}<br>`
             }
         })
         return out

@@ -39,3 +39,4 @@ window.angular
     .directive('onReadFile', OnReadFile.directiveFactory)
     .factory('message', Message.getReturn)
     .factory('parser', Parser.getReturn)
+    .controller('Psp1Ctrl', Psp1Ctrl)

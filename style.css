@@ -1,10 +1,13 @@
-body { padding: 5% }
+body {
+    font-family: "Courier New";
+    padding: 5%
+}
 
 .content {
-  background: #efefef;
-  padding: 20px;
-  margin-top: 25px;
-  line-height: 1.8;
+    background: #efefef;
+    padding: 20px;
+    margin-top: 25px;
+    line-height: 1.8;
 }
 
 table {
@@ -17,4 +20,8 @@ table, th, td {
 
 th, td {
     padding: 0 1rem;
+}
+
+.error-msg {
+    color: #f00;
 }

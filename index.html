@@ -7,8 +7,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-route.js"></script>
 </head>
-<body>
-    <div data-ng-app="myApp" data-ng-controller="MainCtrl as mc">
+<body data-ng-app="myApp">
+    <div data-ng-controller="MainCtrl as mc">
         <h1>{{mc.title}}</h1>
 
         <input type="file" data-on-read-file>
@@ -36,81 +36,119 @@
 
     </div>
 
+    <script src="psp1/product.js"></script>
+    <script src="psp1/salesperson.js"></script>
+    <script src="psp1/company.js"></script>
     <script src="psp2/message.js"></script>
     <script src="psp2/parser.js"></script>
     <script src="psp2/filereader_directive.js"></script>
     <script src="psp3/maincontroller.js"></script>
+    <script src="psp3/psp1controller.js"></script>
     <script src="psp3/main.js"></script>
 
     <hr>
 
-    <div>
-        <h1>PSP1: Native JavaScript ES6 application</h1>
+    <div data-ng-controller="Psp1Ctrl as pc">
+        <h1>{{ pc.title }}</h1>
         <fieldset>
             <legend>Input Salesperson Information</legend>
             <label>ID: </label>
-            <input type="text" id="eId" placeholder="Enter the ID here">
-            <br>
+            <input type="text" name="eId" data-ng-model="pc.newSalesPerson.id" placeholder="Enter the ID here"><span ng-show="eId.$touched && eId.$invalid">The name is required.</span><br>
             <label>FirstName: </label>
-            <input type="text" id="firstName" placeholder="Enter the first name here">
-            <br>
+            <input type="text" data-ng-model="pc.newSalesPerson.firstName" placeholder="Enter the first name here"><br>
             <label>LastName: </label>
-            <input type="text" id="lastName" placeholder="Enter the last name here">
-            <br>
+            <input type="text" data-ng-model="pc.newSalesPerson.lastName" placeholder="Enter the last name here"><br>
             <label>Salary: </label>
-            <input type="text" id="salary" placeholder="Enter the salary here">
-            <br>
+            <input type="text" data-ng-model="pc.newSalesPerson.salary" placeholder="Enter the salary here"><br>
             <label>Commenced year: </label>
-            <input type="text" id="commencedYear" placeholder="Enter the commenced year here">
-            <br>
-            <button id='btnAddSalesPerson'>Add</button>
+            <input type="text" data-ng-model="pc.newSalesPerson.yearCommenced" placeholder="Enter the commenced year here"><br>
+            <p class="error-msg">{{ pc.newSalesPerson.errorMsg }}</p>
+            <button data-ng-click="pc.addSalesPeople()">Add Sales People</button>
         </fieldset>
         <br>
 
         <fieldset>
             <legend>Input Product Information</legend>
             <label>ID: </label>
-            <input type="text" id="pId" placeholder="Enter the ID here">
-            <br>
+            <input type="text" data-ng-model="pc.newProduct.id" placeholder="Enter the ID here"><br>
             <label>ProductName: </label>
-            <input type="text" id="productName" placeholder="Enter the product name here">
-            <br>
+            <input type="text" data-ng-model="pc.newProduct.name" placeholder="Enter the product name here"><br>
             <label>Price: </label>
-            <input type="text" id="price" placeholder="Enter the price here">
-            <br>
+            <input type="text" data-ng-model="pc.newProduct.price" placeholder="Enter the price here"><br>
             <label>QuantityOnHand: </label>
-            <input type="text" id="onhand" placeholder="Enter the quantity on hand here">
-            <br>
+            <input type="text" data-ng-model="pc.newProduct.quantityOnHand" placeholder="Enter the quantity on hand here"><br>
             <label>minimumQuantity: </label>
-            <input type="text" id="minimum" placeholder="Enter the minimum quantity here">
-            <br>
-            <button id='btnAddProduct'>Add</button>
+            <input type="text" data-ng-model="pc.newProduct.minimumQuantity" placeholder="Enter the minimum quantity here"><br>
+            <p class="error-msg">{{ pc.newProduct.errorMsg }}</p>
+            <button data-ng-click="pc.addProduct()">Add Product</button>
         </fieldset>
-
         <br>
-        <button id='btnDisplay'>Display</button>
+
         <h2>Display all input below</h2>
-        <div id="result"></div>
+        <div data-ng-if="!pc.company.allMySalesPersons.length"  class="content">
+            <p>Sales People is not added yet.</p>
+        </div>
+        <div data-ng-if="pc.company.allMySalesPersons.length" class="content">
+            <h3>Added Sales People</h3>
+            <p>Following Sales People were added.</p>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Salary</th>
+                    <th>YearCommenced</th>
+                </tr>
+                <tr data-ng-repeat="salesPerson in pc.company.allMySalesPersons">
+                    <td>{{salesPerson.id}}</td>
+                    <td>{{salesPerson.firstName}}</td>
+                    <td>{{salesPerson.lastName}}</td>
+                    <td>{{salesPerson.salary}}</td>
+                    <td>{{salesPerson.yearCommenced}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div data-ng-if="!pc.company.allMyProducts.length"  class="content">
+            <p>Product is not added yet.</p>
+        </div>
+        <div data-ng-if="pc.company.allMyProducts.length" class="content">
+            <h3>Added Products</h3>
+            <p>Following Products were added.</p>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>QuantityOnHand</th>
+                    <th>MinimumQuantity</th>
+                </tr>
+                <tr data-ng-repeat="product in pc.company.allMyProducts">
+                    <td>{{product.id}}</td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{product.quantityOnHand}}</td>
+                    <td>{{product.minimumQuantity}}</td>
+                </tr>
+            </table>
+        </div>
+
         <h2>getAllSalesPeople method</h2>
-        <div id="getAllSalesPeople"></div>
+        <div data-ng-if="!pc.company.allMySalesPersons.length"  class="content">
+            <p>Sales People is not added yet.</p>
+        </div>
+        <div data-ng-if="pc.company.allMySalesPersons.length" class="content">
+            <div data-ng-repeat="sp in pc.showAllSalesPeople()">{{ sp }}</div>
+        </div>
+
         <h2>getProductsToOrder method</h2>
-        <div id="getProductsToOrder"></div>
+        <div data-ng-if="!pc.company.allMyProducts.length"  class="content">
+            <p>Product is not added yet.</p>
+        </div>
+        <div data-ng-if="pc.company.allMyProducts.length" class="content">
+            <div data-ng-repeat="pr in pc.showProductsToOrder()">{{ pr }}</div>
+        </div>
     </div>
 
-    <script src="psp1/product.js"></script>
-    <script src="psp1/salesperson.js"></script>
-    <script src="psp1/company.js"></script>
-    <script src="psp1/view.js"></script>
-    <script src="psp1/controller.js"></script>
-    <script>
-        /* jshint undef:true, unused:true, esversion:6, asi:true */
-        function main() {
-            let newCompany = new Company()
-            View.setUp()
-            let ctrl = new Controller(newCompany, View)
-        }
-
-        window.onload = main
-    </script>
 </body>
 </html>
