@@ -30,7 +30,7 @@ window.angular
                 templateUrl: 'templates/products-to-order.html'
             })
             .otherwise({
-                redirectTo: '/AddedSalesPeople'
+                redirectTo: ''
             })
     }])
     .config(['$locationProvider', function($locationProvider) {

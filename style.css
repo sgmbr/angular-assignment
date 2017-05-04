@@ -25,3 +25,15 @@ th, td {
 .error-msg {
     color: #f00;
 }
+
+input.ng-invalid {
+    background-color: pink;
+}
+
+input.ng-valid {
+    background-color: lightgreen;
+}
+
+input.ng-untouched {
+    background-color: white;
+}

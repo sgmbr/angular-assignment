@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>PSP2</title>
+    <title>PSP3</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-route.js"></script>
@@ -21,8 +21,9 @@
         <p data-ng-if="mc.message.list.length">Press Add to add this data.</p>
         <a href="#AddedSalesPeople"><button data-ng-click="mc.addSalesPeople()">Add Sales People</button></a>
         <a href="#AddedProducts"><button data-ng-click="mc.addProducts()">Add Products</button></a>
-        <br>
+        <br><br>
 
+        <p>Following part uses routing</p>
         <ul>
             <li><a href="#AddedSalesPeople">Added Sales People</a></li>
             <li><a href="#GetAllSalesPeople">getAllSalesPeople</a></li>
@@ -50,38 +51,52 @@
 
     <div data-ng-controller="Psp1Ctrl as pc">
         <h1>{{ pc.title }}</h1>
-        <fieldset>
-            <legend>Input Salesperson Information</legend>
-            <label>ID: </label>
-            <input type="text" name="eId" data-ng-model="pc.newSalesPerson.id" placeholder="Enter the ID here"><span ng-show="eId.$touched && eId.$invalid">The name is required.</span><br>
-            <label>FirstName: </label>
-            <input type="text" data-ng-model="pc.newSalesPerson.firstName" placeholder="Enter the first name here"><br>
-            <label>LastName: </label>
-            <input type="text" data-ng-model="pc.newSalesPerson.lastName" placeholder="Enter the last name here"><br>
-            <label>Salary: </label>
-            <input type="text" data-ng-model="pc.newSalesPerson.salary" placeholder="Enter the salary here"><br>
-            <label>Commenced year: </label>
-            <input type="text" data-ng-model="pc.newSalesPerson.yearCommenced" placeholder="Enter the commenced year here"><br>
-            <p class="error-msg">{{ pc.newSalesPerson.errorMsg }}</p>
-            <button data-ng-click="pc.addSalesPeople()">Add Sales People</button>
-        </fieldset>
+        <form name="salesPersonForm" novalidate>
+            <fieldset>
+                <legend>Input Salesperson Information</legend>
+                <label>ID: </label>
+                <input type="number" name="eId" data-ng-model="pc.newSalesPerson.id" placeholder="Enter the ID here" required>
+                <span class="error-msg" data-ng-show="salesPersonForm.eId.$touched && salesPersonForm.eId.$invalid">ID is required.</span><br>
+                <label>FirstName: </label>
+                <input type="text" name="firstName" data-ng-model="pc.newSalesPerson.firstName" placeholder="Enter the first name here" required>
+                <span class="error-msg" data-ng-show="salesPersonForm.firstName.$touched && salesPersonForm.firstName.$invalid">FirstName is required.</span><br>
+                <label>LastName: </label>
+                <input type="text" name="lastName" data-ng-model="pc.newSalesPerson.lastName" placeholder="Enter the last name here" required>
+                <span class="error-msg" data-ng-show="salesPersonForm.lastName.$touched && salesPersonForm.lastName.$invalid">LastName is required.</span><br>
+                <label>Salary: </label>
+                <input type="number" name="salary" data-ng-model="pc.newSalesPerson.salary" placeholder="Enter the salary here" required>
+                <span class="error-msg" data-ng-show="salesPersonForm.salary.$touched && salesPersonForm.salary.$invalid">Salary is required.</span><br>
+                <label>Commenced year: </label>
+                <input type="number" name="yearCommenced" data-ng-model="pc.newSalesPerson.yearCommenced" placeholder="Enter the commenced year here" required>
+                <span class="error-msg" data-ng-show="salesPersonForm.yearCommenced.$touched && salesPersonForm.yearCommenced.$invalid">Commenced year is required.</span><br>
+                <input type="button" value="Add Sales People" data-ng-click="pc.addSalesPeople(); salesPersonForm.$setUntouched();" data-ng-disabled="salesPersonForm.eId.$invalid || salesPersonForm.firstName.$invalid || salesPersonForm.lastName.$invalid || salesPersonForm.salary.$invalid || salesPersonForm.yearCommenced.$invalid">
+                <input type="reset" data-ng-click="salesPersonForm.$setUntouched()">
+            </fieldset>
+        </form>
         <br>
 
-        <fieldset>
-            <legend>Input Product Information</legend>
-            <label>ID: </label>
-            <input type="text" data-ng-model="pc.newProduct.id" placeholder="Enter the ID here"><br>
-            <label>ProductName: </label>
-            <input type="text" data-ng-model="pc.newProduct.name" placeholder="Enter the product name here"><br>
-            <label>Price: </label>
-            <input type="text" data-ng-model="pc.newProduct.price" placeholder="Enter the price here"><br>
-            <label>QuantityOnHand: </label>
-            <input type="text" data-ng-model="pc.newProduct.quantityOnHand" placeholder="Enter the quantity on hand here"><br>
-            <label>minimumQuantity: </label>
-            <input type="text" data-ng-model="pc.newProduct.minimumQuantity" placeholder="Enter the minimum quantity here"><br>
-            <p class="error-msg">{{ pc.newProduct.errorMsg }}</p>
-            <button data-ng-click="pc.addProduct()">Add Product</button>
-        </fieldset>
+        <form name="productForm" novalidate>
+            <fieldset>
+                <legend>Input Product Information</legend>
+                <label>ID: </label>
+                <input type="text" name="pId" data-ng-model="pc.newProduct.id" placeholder="Enter the ID here" required>
+                <span class="error-msg" data-ng-show="productForm.pId.$touched && productForm.pId.$invalid">ID is required.</span><br>
+                <label>ProductName: </label>
+                <input type="text" name="pName" data-ng-model="pc.newProduct.name" placeholder="Enter the product name here" required>
+                <span class="error-msg" data-ng-show="productForm.pName.$touched && productForm.pName.$invalid">ProductName is required.</span><br>
+                <label>Price: </label>
+                <input type="number" name="price" data-ng-model="pc.newProduct.price" placeholder="Enter the price here" required>
+                <span class="error-msg" data-ng-show="productForm.price.$touched && productForm.price.$invalid">Price is required.</span><br>
+                <label>QuantityOnHand: </label>
+                <input type="number" name="onhand" data-ng-model="pc.newProduct.quantityOnHand" placeholder="Enter the quantity on hand here" required>
+                <span class="error-msg" data-ng-show="productForm.onhand.$touched && productForm.onhand.$invalid">QuantityOnHand is required.</span><br>
+                <label>MinimumQuantity: </label>
+                <input type="number" name="min" data-ng-model="pc.newProduct.minimumQuantity" placeholder="Enter the minimum quantity here" required>
+                <span class="error-msg" data-ng-show="productForm.min.$touched && productForm.min.$invalid">MinimumQuantity is required.</span><br>
+                <input type="button" value="Add Product" data-ng-click="pc.addProduct(); productForm.$setUntouched();" data-ng-disabled="productForm.pId.$invalid || productForm.pName.$invalid || productForm.price.$invalid || productForm.onhand.$invalid || productForm.min.$invalid">
+                <input type="reset" data-ng-click="productForm.$setUntouched()">
+            </fieldset>
+        </form>
         <br>
 
         <h2>Display all input below</h2>
