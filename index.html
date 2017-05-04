@@ -13,14 +13,16 @@
 
         <input type="file" data-on-read-file>
         <br>
-        <div data-ng-if="mc.fileContent.list.length" class="content">
-            <p>File content:</p>
-            <p data-ng-repeat="msg in mc.fileContent.list">{{ msg }}</p>
+        <div data-ng-if="mc.fileContent.list.length">
+            <div class="content">
+                <p>File content:</p>
+                <p data-ng-repeat="msg in mc.fileContent.list">{{ msg }}</p>
+            </div>
+            <p>Press following button to add this data.</p>
+            <a href="#AddedSalesPeople" data-ng-click="mc.addSalesPeople()" class="btn">Add Sales People</a>
+            <a href="#AddedProducts" data-ng-click="mc.addProducts()" class="btn">Add Products</a>
         </div>
 
-        <p data-ng-if="mc.message.list.length">Press Add to add this data.</p>
-        <a href="#AddedSalesPeople"><button data-ng-click="mc.addSalesPeople()">Add Sales People</button></a>
-        <a href="#AddedProducts"><button data-ng-click="mc.addProducts()">Add Products</button></a>
         <br><br>
 
         <p>Following part uses routing</p>
@@ -33,7 +35,7 @@
             <li><a href="#ProductsToOrder">Products to Order</a></li>
         </ul>
 
-        <div ng-view></div>
+        <div data-ng-view></div>
 
     </div>
 
